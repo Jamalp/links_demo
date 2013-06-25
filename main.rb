@@ -6,13 +6,8 @@ get '/' do
   erb :home
 end
 
-get '/manual_links' do
-  @links = ['http://reddit.com',
-            'http://nytimes.com',
-            'http://theverge.com',
-            'http://news.ycombinator.com',
-            'http://engadget.com']
-  erb :links
+get '/about' do
+
 end
 
 get '/links' do
@@ -24,3 +19,21 @@ get '/links' do
 link_file.close
   erb :links
 end
+
+post '/navigate' do
+  case params[:destination].downcase
+    when "links" then redirect to("links")
+    when "about" then redirect to ("about")
+  end
+  redirect to("/")
+end
+
+
+# get '/manual_links' do
+#   @links = ['http://reddit.com',
+#             'http://nytimes.com',
+#             'http://theverge.com',
+#             'http://news.ycombinator.com',
+#             'http://engadget.com']
+#   erb :links
+# end
